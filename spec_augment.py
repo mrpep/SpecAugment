@@ -21,11 +21,10 @@ class SpecAugment(tf.keras.layers.Layer):
     self.t_gaps = t_gaps
     self.f_gap_size = f_gap_size
     self.t_gap_size = t_gap_size
-    self.batch_size = 16
 
   def build(self,input_shape):
     self.input_shape_list = input_shape.as_list()
-    self.mask = tf.Variable(initial_value=tf.keras.initializers.Ones()(shape=self.input_shape_list[1:]),dtype=tf.float32)
+    self.mask = tf.Variable(initial_value=tf.keras.initializers.Ones()(shape=self.input_shape_list[1:]),dtype=tf.float32,trainable=False)
     self.f_max = self.input_shape_list[-1]
     self.t_max = self.input_shape_list[-2]
 
