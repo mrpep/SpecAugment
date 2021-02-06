@@ -12,7 +12,7 @@ class SpecAugment(tf.keras.layers.Layer):
     spectrograms won't have gaps in the frequency domain.
   t_gaps: same as f_gaps but applied in the time axis.
   f_gap_size: list of 2 elements [min_size,max_size]. For each gap, N consecutive frequency bins will be masked,
-    being N drawn from an uniform distribution [min_gaps,max_gaps].
+    being N drawn from an uniform distribution [min_size,max_size].
   t_gap_size: same as f_gap_size but applied in the frequency axis.
   """
   def __init__(self,f_gaps = [0,4],t_gaps = [0,4],f_gap_size=[5,15],t_gap_size=[5,15],name=None):
