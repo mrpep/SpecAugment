@@ -1,4 +1,4 @@
-# specaugment_tf_keras
+# SpecAugment
 A minimalistic Tensorflow 2.x Keras layer which applies SpecAugment [1] to its input
 
 Try it in [Colab](https://colab.research.google.com/github/mrpep/specaugment_tf_keras/blob/main/SpecAugment_Test.ipynb)
