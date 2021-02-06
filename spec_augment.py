@@ -68,3 +68,13 @@ class SpecAugment(tf.keras.layers.Layer):
       return tf.map_fn(elems = x,fn = make_gap)
     else:
       return x
+
+  def get_config(self):
+    config = super().get_config().copy()
+    config.update({
+                  'f_gaps': self.f_gaps,
+                  't_gaps': self.t_gaps,
+                  'f_gap_size': self.f_gap_size,
+                  't_gap_size': self.t_gap_size
+                  })
+    return config
