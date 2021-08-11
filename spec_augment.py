@@ -14,6 +14,7 @@ class SpecAugment(tf.keras.layers.Layer):
   f_gap_size: list of 2 elements [min_size,max_size]. For each gap, N consecutive frequency bins will be masked,
     being N drawn from an uniform distribution [min_size,max_size].
   t_gap_size: same as f_gap_size but applied in the frequency axis.
+  probability: probability of applying SpecAugment. By default, half of the instances are augmented.
   """
   def __init__(self,f_gaps = [0,4],t_gaps = [0,4],f_gap_size=[5,15],t_gap_size=[5,15],probability=0.5,name=None):
     super(SpecAugment, self).__init__(name=name)
@@ -38,7 +39,7 @@ class SpecAugment(tf.keras.layers.Layer):
       t_lens = tf.random.uniform(minval=self.t_gap_size[0],maxval=self.t_gap_size[1],dtype=tf.int32,shape=n_tgaps)
       f_starts = tf.random.uniform(minval=0,maxval=self.f_max-tf.reduce_max(f_lens),dtype=tf.int32,shape=n_fgaps)
       t_starts = tf.random.uniform(minval=0,maxval=self.t_max-tf.reduce_max(t_lens),dtype=tf.int32,shape=n_tgaps)
-      
+
       prob = tf.random.uniform(minval=0,maxval=1,shape=[1,])
       n_fgaps = n_fgaps*tf.cast(prob < self.probability,tf.int32)
       n_tgaps = n_tgaps*tf.cast(prob < self.probability,tf.int32)
